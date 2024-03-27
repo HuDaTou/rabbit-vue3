@@ -5,17 +5,12 @@
 <!-- 一级路由出口组件 -->
 <RouterView />
 
-<div class="text">
-    test scss
-</div>
+
 </template>
 
 
 
 <style scoped lang="scss">
-.test{
-    color: $priceColor;
-}
 
 
 </style>
