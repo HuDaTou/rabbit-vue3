@@ -1,4 +1,25 @@
 <script setup>
+import { onMounted ,ref} from "vue";
+
+// 引用layoutAPI封装的js
+import { getCategoryAPI } from "@/api/layout.js";
+
+
+// 创建一个响应式数据
+const categoryList = ref([])
+// 调用API，并进行封装
+const getCategory = async () => {
+  const res = await getCategoryAPI()
+  console.log(res);
+  // 将数据data提取出来赋值给响应式数组
+  categoryList.value = res.result
+
+
+}
+// 选择合适的生命周期调用函数
+onMounted(() => {
+  getCategory()
+})
 
 </script>
 
@@ -9,12 +30,10 @@
         <RouterLink to="/">小兔鲜</RouterLink>
       </h1>
       <ul class="app-header-nav">
-        <li class="home">
-          <RouterLink to="/">首页</RouterLink>
+        <li class="home" v-for="item in categoryList" :key="item.di">
+          <RouterLink to="/">{{item.name}}</RouterLink>
         </li>
-        <li> <RouterLink to="/">居家</RouterLink> </li>
-        <li> <RouterLink to="/">美食</RouterLink> </li>
-        <li> <RouterLink to="/">服饰</RouterLink> </li>
+
       </ul>
       <div class="search">
         <i class="iconfont icon-search"></i>
