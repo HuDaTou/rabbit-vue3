@@ -1,9 +1,7 @@
-<!-- 首页 -->
+<!-- home页面 -->
 <template>
   <div>
-
-    我是首页
-    <RouterView />
+    我是home页面
   </div>
 </template>
 

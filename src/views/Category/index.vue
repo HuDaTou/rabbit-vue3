@@ -1,9 +1,7 @@
-<!-- 首页 -->
+<!-- Category页面 -->
 <template>
   <div>
-
-    我是首页
-    <RouterView />
+    我是category页面
   </div>
 </template>
 
