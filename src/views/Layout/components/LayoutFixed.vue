@@ -1,11 +1,13 @@
 <script setup>
+// 引用vueuse插件中usescroll功能
 import { useScroll } from '@vueuse/core'
 
 const { y } = useScroll(window)
 </script>
 
 <template>
-  <div class="app-header-sticky show">
+    <!-- 添加vue的动态类控制 -->
+  <div class="app-header-sticky" :class="{ show: y > 78}">
     {{ y }}
     <div class="container">
       <RouterLink class="logo" to="/" />
