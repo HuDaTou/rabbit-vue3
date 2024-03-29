@@ -1,7 +1,9 @@
 <script setup>
 import HomePanel from './HomePanel.vue'
 import { getGoodsAPI } from '@/api/Home'
-import { ref , onMounted} from 'vue'
+import { ref, onMounted } from 'vue'
+import Goodsitem from './Goodsitem.vue'
+import Goodscate from './Goodscate.vue'
 const goodsProduct = ref([])
 const getGoods = async () => {
   const { result } = await getGoodsAPI()
@@ -24,13 +26,24 @@ onMounted(() => {
           </strong>
         </RouterLink>
         <ul class="goods-list">
-          <li v-for="good in cate.goods" :key="good.id">
+          <li v-for="goods in cate.goods" :key="goods.id">
             <RouterLink to="/" class="goods-item">
-              <img v-img-lazy="good.picture" alt="" />
-              <p class="name ellipsis">{{ good.name }}</p>
-              <p class="desc ellipsis">{{ good.desc }}</p>
-              <p class="price">&yen;{{ good.price }}</p>
+              <img :src="goods.picture" alt="" />
+              <p class="name ellipsis">{{ goods.name }}</p>
+              <p class="desc ellipsis">{{ goods.desc }}</p>
+              <p class="price">&yen;{{ goods.price }}</p>
             </RouterLink>
+          </li>
+        </ul>
+      </div>
+    </HomePanel>
+
+    <HomePanel :title="cate.name" v-for="cate in goodsProduct" :key="cate.id">
+      <div class="box">
+        <Goodscate cate="cate"/>
+        <ul class="goods-list">
+          <li v-for="goods in cate.goods" :key="goods.id">
+            <Goodsitem goods="goods"/> 
           </li>
         </ul>
       </div>
@@ -42,6 +55,7 @@ onMounted(() => {
 .home-product {
   background: #fff;
   margin-top: 20px;
+
   .sub {
     margin-bottom: 2px;
 
