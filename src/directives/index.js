@@ -15,7 +15,7 @@ app.directive('img-lazy', {
             // isIntersecting的作用是进入视口区域为true的布尔值
             ([{ isIntersecting }], ) => {
                 
-             console.log(isIntersecting);
+            //  console.log(isIntersecting);
              if (isIntersecting) {
                 // 进入视口区域
                 el.src = binding.value
